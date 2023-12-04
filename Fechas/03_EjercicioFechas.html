@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Indica la fecha del evento.</h1>
+    
+    <form name = "Formulario" action="javascript:diasRestantes()">
+        <input type="date" name="fechaEvento" id="fechaEvento" required="">
+        <input type="submit" name="enviar" id="boton" value="Enviar fecha">
+    </form>
+</body>
+<script>
+    function diasRestantes(){
+        let fecha = document.getElementById("fechaEvento").value;
+        console.log(fecha);
+        console.log(typeof(fecha));
+
+        
+
+    }
+</script>
+</html>

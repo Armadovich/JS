@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Indica la fecha de tu cumpleaños.</h1>
+
+    <form name="miFormulario" action="javascript:calculo()">
+        <input type="date" name="fechaNacimiento" id="fechaNacimiento" required=""/>
+        <input type="submit" name="enviar" id="boton" value="Enviar fecha"/>        
+    </form>
+
+    <div id="resultado"></div>
+</body>
+<script>
+    function calculo() {
+        let cadena = document.getElementById("fechaNacimiento").value;
+        console.log(cadena); //aaaa-mm-dd
+
+        let fArray = cadena.split("-");//Se convierte la cadena a un Array
+
+        let fechaNacimiento = new Date(fArray[0], fArray[1]-1 , fArray[2]);//Al mes se le resta 1 porque empieza en 0
+        console.log(fechaNacimiento);
+
+        let hoy = new Date();
+        let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+
+        if(hoy.getMonth() < fechaNacimiento.getMonth()){
+            edad--;
+        }else if (hoy.getMonth() == fechaNacimiento.getMonth()){
+            if (hoy.getDate() < fechaNacimiento.getDate()) {
+                edad--;
+            }
+        }
+
+        let cadenaH1 = document.createElement('h1');
+        cadenaH1.innerHTML = `Tu edad es ${edad} años`;
+
+        document.getElementById("resultado").append(cadenaH1);
+    }
+</script>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="mostrarFecha" id="fecha1"></div>
+
+    <div class="fecha" id="cuadroFecha"></div>
+    <div class="mesAnho" id="mesAnho"></div>
+</body>
+
+<script>
+    const diasFebrero = (anho)=> {
+        if (((anho % 4 == 0) && (anho % 100 != 0)) || (anho % 400 == 0)) { //Aplico las condiciones
+            //Es bisiesto
+            return 29;
+        } else {
+            //No es bisiesto
+            return 28;
+        }
+    }
+
+
+    let fecha = new Date();
+
+    let diaSemana = fecha.getDay();
+    let diasSemana = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+
+    let dia = fecha.getDate();
+
+    let mes = fecha.getMonth();
+    let meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+
+    let anho = fecha.getFullYear();
+    
+    let numeroDiasMeses = new Array(31, diasFebrero(fecha.getFullYear()), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+
+    //Fecha en numeros separado por barras:
+    let parrafo1 = document.createElement('h1');
+    parrafo1.innerHTML = dia +"/"+(mes+1)+"/"+anho;
+    document.getElementById("fecha1").append(parrafo1);
+
+    //Fecha separada por "de" con el nombre del mes:
+    let parrafo2 = document.createElement('h2');
+    parrafo2.innerHTML = dia+" de "+meses[mes]+" de "+anho;
+    document.getElementById("cuadroFecha").append(parrafo2);
+
+    //Fecha igual que la anterior pero con el dia de la semana:
+    let parrafo3 = document.createElement('h3');
+    parrafo3.innerHTML = diasSemana[diaSemana]+", "+dia+" de "+meses[mes]+" de "+anho;
+    document.getElementById("mesAnho").append(parrafo3);
+</script>
+</html>

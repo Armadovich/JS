@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action id="formulario">
+        <input type="number" id="nota">
+        <input type="button" id="boton" value="Añadir nota">
+    </form>
+    <div id="div_nota"></div>
+</body>
+<script>
+
+    function insertar(){
+        console.log("Estoy escuchando");
+        let division = document.createElement("div");
+        let span = document.createElement("span");
+        span.innerHTML = document.getElementById("nota").value;
+        let borrar_button = document.createElement("button");
+        let arriba_button = document.createElement("button");
+        let abajo_button = document.createElement("button");
+
+        borrar_button.innerHTML = "Borrar";
+        arriba_button.innerHTML = "Arriba";
+        abajo_button.innerHTML = "Abajo";
+
+        division.appendChild(span);
+        division.appendChild(borrar_button);
+        division.appendChild(arriba_button);
+        division.appendChild(abajo_button);
+        
+        document.getElementById("div_nota").append(division);
+
+        borrar_button.addEventListener  ("click", eliminar);
+        arriba_button.addEventListener  ("click", subir);
+        abajo_button.addEventListener   ("click", bajar);
+    }
+
+    function eliminar(evt) {
+        evt.target.parentNode.remove();
+    }
+
+    function subir(evt)    {
+        evt.target.parentNode.parentNode.insertBefore(evt.target.parentNode,evt.target.parentNode.parentNode.firstChild);
+    }
+
+    function bajar(evt)    {
+        evt.target.parentNode.parentNode.appendChild(evt.target.parentNode);
+    }
+
+    const boton = document.getElementById("boton");
+    boton.addEventListener("click", insertar);
+
+
+
+   
+</script>
+</html>

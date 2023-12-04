@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Ejercicio DOM, Eventos y funciones</title>
+		
+		<style>
+			.caja{
+				width: 80px;
+				height: 80px;
+				float: left;
+				margin: 5px;
+				background:blueviolet;
+				bottom: auto;
+				color:white;
+				text-align:center;
+				align-content: center;
+				font-size: 20px;
+			}
+			.amarillo{
+				background: chartreuse;
+			}
+
+			.naranja{
+				background: orangered;
+			}
+
+			.seccion{
+				margin:20px;
+			}
+
+			.box{
+				width: 400px;
+				height: 450px;
+				float: left;
+				margin: 20px;
+			}
+			li,ul{
+				list-style: none;
+				margin: 10px;
+			}
+			div div:hover{
+				background:#1717FF
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<h1>Ejercicio creacion elementos DOM</h1>
+
+		<div class="box">
+			<form action="#" method="POST" id="formulario" onsubmit="return false;">
+				<ul>
+					<li>
+						<label for="numero">Numero:</label> 
+						<input type="number" id="cantidad" name="cantidad" min="1" max="10"/>
+						<input type="button" value="Crear" id="crear" name="crear" />
+					</li>
+					<li>
+						<label for="numero">Numero:</label> 
+						<input type="number" id="numeroAnterior" name="numeroAnterior" min="1" max="1o"/>
+						<input type="button" value="Antes" id="antes" name="antes" />
+					</li>
+					<li>
+						<label for="numero">Numero:</label> 
+						<input type="number" id="numeroPosterior" name="numeroPosterior" min="1" max="10"/>
+						<input type="button" value="Despues" id="despues" name="despues" />
+					</li>
+					<li>
+
+					</li>
+				</ul>
+						
+			</form>
+		</div>
+
+		<div class="seccion" id="seccion">
+			
+        </div>
+        <script type="text/javascript">
+
+			function crear(){
+				for (let i = 0; i < document.getElementById("cantidad").value; i++) {
+					let div = document.createElement("div");
+					div.setAttribute("class", "caja");
+					div.setAttribute("id", i+1);
+					div.innerHTML = (i+1);
+					document.getElementById("seccion").append(div);
+				}
+			}
+
+			function antes(evt){
+				let target = document.getElementById(document.getElementById("numeroAnterior").value);
+				let div2 = document.createElement("div");
+				div2.setAttribute("class", "caja naranja");
+				document.getElementById("seccion").insertBefore(div2,target);
+			}
+
+			function despues(){
+				let id = parseInt(document.getElementById("numeroPosterior").value)
+				let target = document.getElementById(id+1);
+				let div3 = document.createElement("div");
+				div3.setAttribute("class", "caja amarillo");
+				document.getElementById("seccion").insertBefore(div3,target);
+			}
+
+			let crear_button = document.getElementById("crear");
+			let antes_button = document.getElementById("antes");
+			let despues_button = document.getElementById("despues");
+
+			crear_button.addEventListener	("click", crear);
+			antes_button.addEventListener	("click", antes);
+			despues_button.addEventListener	("click", despues);
+		</script>
+	</body>
+</html>
